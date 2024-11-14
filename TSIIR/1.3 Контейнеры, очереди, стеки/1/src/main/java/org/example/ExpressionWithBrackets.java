@@ -12,8 +12,9 @@ public class ExpressionWithBrackets {
         Scanner scanner = new Scanner(System.in);
         logger.info("Введите выражение: ");
         String expression = scanner.nextLine();
-        String result = addMissingBrackets(expression);
-        logger.info("Выражение с недостающими скобками: " + result);
+        if (!expression.isEmpty()) {
+            logger.info(String.format("Выражение с недостающими скобками: %s", addMissingBrackets(expression)));
+        }
     }
 
     private static String addMissingBrackets(String expression) {
