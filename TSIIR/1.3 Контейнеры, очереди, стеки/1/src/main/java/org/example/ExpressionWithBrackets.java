@@ -3,6 +3,7 @@ package org.example;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ExpressionWithBrackets {
@@ -13,7 +14,7 @@ public class ExpressionWithBrackets {
         logger.info("Введите выражение: ");
         String expression = scanner.nextLine();
         if (!expression.isEmpty()) {
-            logger.info(String.format("Выражение с недостающими скобками: %s", addMissingBrackets(expression)));
+            logger.log(Level.INFO, String.format("Выражение с недостающими скобками: %s", addMissingBrackets(expression)));
         }
     }
 
