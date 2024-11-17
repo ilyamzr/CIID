@@ -1,17 +1,16 @@
 package org.example;
 
-import java.util.Objects;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Scanner;
 
 public class Deque<I> {
 
-    private static final Logger log = Logger.getLogger(Deque.class.getName());
+    private static final Logger logger = Logger.getLogger(Deque.class.getName());
 
     private Node head;
     private Node tail;
-    private int N;
+    private int size;
 
     private class Node{
         I item;
@@ -21,12 +20,7 @@ public class Deque<I> {
 
     public boolean isEmpty()
     {
-        return N == 0;
-    }
-
-    public int size()
-    {
-        return N;
+        return size == 0;
     }
 
     public void pushLeft(I item)
@@ -41,7 +35,7 @@ public class Deque<I> {
             oldHead.prev = head;
         }
         else head.next = null;
-        N++;
+        size++;
     }
     public void pushRight(I item)
     {
@@ -55,7 +49,7 @@ public class Deque<I> {
             oldTail.next = tail;
         }
         else tail.prev = null;
-        N++;
+        size++;
     }
 
     public I popLeft()
@@ -65,7 +59,7 @@ public class Deque<I> {
             I item = head.item;
             head = head.next;
             head.prev = null;
-            N--;
+            size--;
             return item;
         }
         else return null;
@@ -77,13 +71,57 @@ public class Deque<I> {
             I item = tail.item;
             tail = tail.prev;
             tail.next = null;
-            N--;
+            size--;
             return item;
         }
         else return null;
     }
 
-    public static void main(String[] args) {
+    public void printDeque() {
+        Node current = head;
+        while (current != null) {
+            logger.info(current.item + " ");
+            current = current.next;
+        }
+    }
 
+    public static void main(String[] args) {
+        Deque<Integer> deque = new Deque<>();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            logger.info("1) Вставить в начало\n2) Вставить в конец\n3) Удалить из начала\n4) Удалить из конца\n5) Закончить");
+            int choice = Integer.parseInt(scanner.nextLine());
+            int item;
+            switch (choice) {
+                case 1:
+                    logger.info("Введите число: ");
+                    item = Integer.parseInt(scanner.nextLine());
+                    deque.pushLeft(item);
+                    break;
+                case 2:
+                    logger.info("Введите число: ");
+                    item = Integer.parseInt(scanner.nextLine());
+                    deque.pushRight(item);
+                    break;
+                case 3:
+                    item = deque.popLeft();
+                    logger.log(Level.INFO, String.format("Удален элемент: %d", item));
+                    break;
+                case 4:
+                    item = deque.popRight();
+                    logger.log(Level.INFO, String.format("Удален элемент: %d", item));
+                    break;
+                case 5:
+                    logger.info("Выход...");
+                    scanner.close();
+                    return;
+                default:
+                    logger.info("Неверный выбор. Пожалуйста, попробуйте снова.");
+            }
+            logger.info("Текущее состояние дека: ");
+            deque.printDeque();
+        }
     }
 }
+
