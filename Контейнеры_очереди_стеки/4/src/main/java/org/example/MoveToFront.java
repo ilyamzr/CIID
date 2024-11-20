@@ -20,15 +20,6 @@ public class MoveToFront {
         return size == 0;
     }
 
-    public boolean hasMet(char character) {
-        Node currentNode = head;
-        while (currentNode != null) {
-            if (currentNode.item == character) return true;
-            currentNode = currentNode.next;
-        }
-        return false;
-    }
-
     public void createNewHead(char character) {
         Node oldHead = head;
         head = new Node();
@@ -38,25 +29,22 @@ public class MoveToFront {
     }
 
     public void moveToFront(char character) {
-        if (isEmpty()) {
-            createNewHead(character);
-        } else {
-            if (!hasMet(character)) {
-                createNewHead(character);
-            } else {
-                Node currentNode = head;
-                Node previousNode = null;
-                while (currentNode != null && currentNode.item != character) {
-                    previousNode = currentNode;
-                    currentNode = currentNode.next;
+        if(!isEmpty())
+        {
+            Node currentNode = head;
+            Node prev = null;
+            while (currentNode != null) {
+                if (currentNode.item == character)
+                {
+                    if(prev != null) prev.next = currentNode.next;
+                    else head = currentNode.next;
+                    break;
                 }
-                if (currentNode != null && previousNode != null) {
-                    previousNode.next = currentNode.next;
-                    size--;
-                }
-                createNewHead(character);
+                prev = currentNode;
+                currentNode = currentNode.next;
             }
         }
+        createNewHead(character);
     }
 
     public void printList() {
