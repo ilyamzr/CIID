@@ -26,35 +26,31 @@ public class ExpressionWithBrackets {
             if (Character.isDigit(ch)) {
                 output.push(Character.toString(ch));
             } else if (isOperator(ch)) {
-                while (!operators.isEmpty() && getPriority(ch) <= getPriority(operators.peek())) {
-                    String right = output.pop();
-                    String left = output.pop();
-                    char op = operators.pop();
-                    output.push("(" + left + op + right + ")");
-                }
                 operators.push(ch);
+            } else if (ch == ')' && !operators.isEmpty()) {
+                String right = output.pop();
+                String left = output.pop();
+                char operator = operators.pop();
+                String newExpr = "(" + left + operator + right + ")";
+                output.push(newExpr);
+            }
+            else if (ch == ')') {
+                String newExpr = "(" + output.pop() + ")";
+                output.push(newExpr);
             }
         }
-
         while (!operators.isEmpty()) {
             String right = output.pop();
             String left = output.pop();
-            char op = operators.pop();
-            output.push("(" + left + op + right + ")");
+            char operator = operators.pop();
+            String newExpr = left + operator + right;
+            output.push(newExpr);
         }
 
-        return output.pop();
+        return output.isEmpty() ? "" : output.pop();
     }
 
     private static boolean isOperator(char ch) {
         return ch == '+' || ch == '-' || ch == '*' || ch == '/';
-    }
-
-    private static int getPriority(char operator) {
-        return switch (operator) {
-            case '+', '-' -> 1;
-            case '*', '/' -> 2;
-            default -> 0;
-        };
     }
 }
