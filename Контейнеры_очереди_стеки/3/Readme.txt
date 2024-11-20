@@ -6,3 +6,6 @@
 -pushRight()
 -popLeft()
 -popRight()
+
+План - 40 мин
+Факт - 25 мин
