@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Queue <I>
+    public class Queue <I>
 {
     private static final Logger logger = Logger.getLogger(Queue.class.getName());
 
@@ -38,11 +38,15 @@ public class Queue <I>
     }
     public I dequeue()
     {
-        I item = first.item;
-        first = first.next;
-        if (isEmpty()) last = null;
-        size--;
-        return item;
+        if (!isEmpty())
+        {
+            I item = first.item;
+            first = first.next;
+            if (isEmpty()) last = null;
+            size--;
+            return item;
+        }
+        else return null;
     }
 
     public static void main (String[] args)
