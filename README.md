@@ -28,7 +28,7 @@ Sonar - https://sonarcloud.io/project/overview?id=ilyamzr_TSIIR
 -pushLeft()
 -pushRight()
 -popLeft()
--popRight()
+-popRight()##
 
 План - 40 мин.
 Факт - 50 мин.
