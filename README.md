@@ -90,7 +90,7 @@ Sonar - https://sonarcloud.io/project/overview?id=ilyamzr_TSIIR
 План - 30 мин.
 Факт - 25 мин.
 
-Ссылка на код: https://github.com/ilyamzr/CIID/blob/main/Деревья_бинарного_поиска/2/src/main/java/org/example/BinaryTreeChecker.java
+Ссылка на код: https://github.com/ilyamzr/CIID/blob/main/Деревья_бинарного_поиска/2/src/main/java/org/example/DuplicatesChecker.java
 
 ## Задача 3 - 3.2.37) Поуровневый обход. Напишите метод printLevel(), который принимает в качест- ве аргумента узел Node и выводит ключи из поддерева с корнем в указанном узле по уровням - т.е. в порядке их расстояния до корня, а для узлов с одинаковым расстоянием в порядке слева направо. Совет: воспользуйтесь классом Queue. 
 
