@@ -82,6 +82,6 @@ public class LinearProbingHashST<Key, Value> {
         st.put("ten", 10);
 
         double avgCost = st.averageSearchCost();
-        System.out.println("Средняя стоимость промаха: " + avgCost);
+        System.out.println("Средняя стоимость попадания: " + avgCost);
     }
 }
