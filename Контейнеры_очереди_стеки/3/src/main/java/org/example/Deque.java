@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-public class Deque<I> {
+public class Deque<I> implements AbstractDeque<I> {
 
     private Node head;
     private Node tail;
@@ -13,17 +13,16 @@ public class Deque<I> {
         Node next;
         Node prev;
     }
-
     public Deque() {
         head = null;
         tail = null;
         size = 0;
     }
-
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
-
+    @Override
     public void pushLeft(I item) {
         Node newHead = new Node();
         newHead.item = item;
@@ -38,7 +37,7 @@ public class Deque<I> {
         head = newHead;
         size++;
     }
-
+    @Override
     public void pushRight(I item) {
         Node newTail = new Node();
         newTail.item = item;
@@ -53,7 +52,7 @@ public class Deque<I> {
         tail = newTail;
         size++;
     }
-
+    @Override
     public I popLeft() {
         if (isEmpty()) {
             throw new IllegalStateException("Дек пуст");
@@ -69,7 +68,7 @@ public class Deque<I> {
         size--;
         return item;
     }
-
+    @Override
     public I popRight() {
         if (isEmpty()) {
             throw new IllegalStateException("Дек пуст");
@@ -85,7 +84,7 @@ public class Deque<I> {
         size--;
         return item;
     }
-
+    @Override
     public void printDeque() {
         Node current = head;
         while (current != null) {
@@ -97,48 +96,7 @@ public class Deque<I> {
 
     public static void main(String[] args) {
         Deque<Integer> deque = new Deque<>();
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("1) Вставить в начало\n2) Вставить в конец\n3) Удалить из начала\n4) Удалить из конца\n5) Закончить");
-            int choice = Integer.parseInt(scanner.nextLine());
-            int item;
-            switch (choice) {
-                case 1:
-                    System.out.print("Введите число: ");
-                    item = Integer.parseInt(scanner.nextLine());
-                    deque.pushLeft(item);
-                    break;
-                case 2:
-                    System.out.print("Введите число: ");
-                    item = Integer.parseInt(scanner.nextLine());
-                    deque.pushRight(item);
-                    break;
-                case 3:
-                    try {
-                        item = deque.popLeft();
-                        System.out.println("Удален элемент: " + item);
-                    } catch (IllegalStateException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-                case 4:
-                    try {
-                        item = deque.popRight();
-                        System.out.println("Удален элемент: " + item);
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-                case 5:
-                    System.out.println("Выход...");
-                    scanner.close();
-                    return;
-                default:
-                    System.out.println("Неверный выбор. Пожалуйста, попробуйте снова.");
-            }
-            System.out.println("Текущее состояние дека: ");
-            deque.printDeque();
-        }
+        DequeManager<Integer> manager = new DequeManager<>(deque);
+        manager.manageDeque();
     }
 }
