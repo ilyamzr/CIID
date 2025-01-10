@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.Scanner;
-
 public class ResizingDequeArray<I> implements AbstractDeque<I> {
 
     private I[] array;
@@ -16,10 +14,12 @@ public class ResizingDequeArray<I> implements AbstractDeque<I> {
         tail = 0;
         size = 0;
     }
+
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
+
     @Override
     public void pushLeft(I item) {
         if (size == array.length) {
@@ -30,6 +30,7 @@ public class ResizingDequeArray<I> implements AbstractDeque<I> {
         array[head] = item;
         size++;
     }
+
     @Override
     public void pushRight(I item) {
         if (size == array.length) {
@@ -39,6 +40,7 @@ public class ResizingDequeArray<I> implements AbstractDeque<I> {
         tail = (tail + 1) % array.length;
         size++;
     }
+
     @Override
     public I popLeft() {
         if (isEmpty()) {
@@ -54,6 +56,7 @@ public class ResizingDequeArray<I> implements AbstractDeque<I> {
         }
         return item;
     }
+
     @Override
     public I popRight() {
         if (isEmpty()) {
@@ -80,6 +83,7 @@ public class ResizingDequeArray<I> implements AbstractDeque<I> {
         head = 0;
         tail = size;
     }
+
     @Override
     public void printDeque() {
         for (int i = 0; i < size; i++) {
@@ -90,7 +94,7 @@ public class ResizingDequeArray<I> implements AbstractDeque<I> {
 
     public static void main(String[] args) {
         ResizingDequeArray<Integer> deque = new ResizingDequeArray<>();
-        DequeManager<Integer> manager = new DequeManager<>(deque);
+        DequeManager manager = new DequeManager(deque);
         manager.manageDeque();
     }
 }

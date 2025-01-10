@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.Scanner;
-
 public class Deque<I> implements AbstractDeque<I> {
 
     private Node head;
@@ -96,7 +94,7 @@ public class Deque<I> implements AbstractDeque<I> {
 
     public static void main(String[] args) {
         Deque<Integer> deque = new Deque<>();
-        DequeManager<Integer> manager = new DequeManager<>(deque);
+        DequeManager manager = new DequeManager(deque);
         manager.manageDeque();
     }
 }

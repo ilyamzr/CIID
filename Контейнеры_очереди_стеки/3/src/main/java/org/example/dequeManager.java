@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-class DequeManager<I> {
+class DequeManager {
     private final AbstractDeque<Integer> deque;
 
     public DequeManager(AbstractDeque<Integer> deque) {
