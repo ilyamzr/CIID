@@ -14,18 +14,28 @@ public class BinaryTreeChecker {
         }
     }
 
-    public static boolean isBinaryTree(Node root){
-        if(root == null) return true;
-        else
-        {
-            int count = countNodes(root);
-            return count == root.count && isBinaryTree(root.left) && isBinaryTree(root.right);
-        }
+    public static boolean isBinaryTree(Node root) {
+        return checkBinaryTree(root) != -1;
     }
 
-    public static int countNodes(Node root){
-        if (root == null) return 0;
-        else return 1 + countNodes(root.left) + countNodes(root.right);
+    private static int checkBinaryTree(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftCount = checkBinaryTree(root.left);
+        if (leftCount == -1) return -1;
+
+        int rightCount = checkBinaryTree(root.right);
+        if (rightCount == -1) return -1;
+
+        int totalCount = 1 + leftCount + rightCount;
+
+        if (totalCount != root.count) {
+            return -1;
+        }
+
+        return totalCount;
     }
 
     public static void main(String[] args) {
@@ -37,7 +47,10 @@ public class BinaryTreeChecker {
         root.right.left = null;
         root.right.right  = new Node(1, 1);
 
-        if (isBinaryTree(root)) System.out.println("Дерево корректно");
-        else System.out.println("Дерево некорректно");
+        if (isBinaryTree(root)) {
+            System.out.println("Дерево корректно");
+        } else {
+            System.out.println("Дерево некорректно");
+        }
     }
 }
