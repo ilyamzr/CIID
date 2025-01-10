@@ -15,15 +15,7 @@ public class DuplicatesChecker {
         }
     }
 
-    public static boolean hasNoDuplicates(Node root){
-        if(root == null) return true;
-        else
-        {
-            ArrayList<Integer> keys = new ArrayList<>();
-            return checkDuplicates(root,keys);
-        }
-    }
-    public static boolean checkDuplicates(Node root, List<Integer> keys){
+    public static boolean checkDuplicates(Node root, List<Integer> keys) {
         if(root == null) return true;
         if (keys.contains(root.value)) return false;
         else
@@ -42,7 +34,9 @@ public class DuplicatesChecker {
         root.right.left = null;
         root.right.right  = new Node(1);
 
-        if (hasNoDuplicates(root)) System.out.println("Дупликатов нет");
+        ArrayList<Integer> keys = new ArrayList<>();
+
+        if (checkDuplicates(root,keys)) System.out.println("Дупликатов нет");
         else System.out.println("Дупликаты есть");
     }
 }
