@@ -32,9 +32,9 @@ public class LinearProbingHashST {
                 int currentCost = 0;
                 int index = i;
 
-                while (index < capacity && table[index] != 0) {
+                while (table[index] != 0) {
                     currentCost++;
-                    index++;
+                    index = (index + 1) % capacity;
                 }
                 totalCost += currentCost;
                 count++;
