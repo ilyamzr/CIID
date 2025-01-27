@@ -36,7 +36,9 @@ public class ResizingDequeArray<I> implements AbstractDeque<I> {
         if (size == array.length) {
             resize(2 * array.length);
         }
-        array[tail] = item;
+        if (tail <= array.length) {
+            array[tail] = item;
+        }
         tail = (tail + 1) % array.length;
         size++;
     }
