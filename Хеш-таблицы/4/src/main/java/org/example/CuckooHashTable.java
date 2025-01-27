@@ -25,13 +25,23 @@ public class CuckooHashTable {
     }
 
     public void insert(String key) {
-        if (size1 + size2 >= table1.length) {
+        if (contains(key)) {
+            System.out.println("Key " + key + " already exists");
+            return;
+        }
+        if (size1 / 2 > table1.length || size2 / 2 > table2.length) {
             resize();
         }
-        insertKey(key, 1);
+        insertKey(key, 1,1);
     }
 
-    private void insertKey(String key, int table) {
+    private void insertKey(String key, int table, int attempts) {
+        if (attempts > 2)
+        {
+            resize();
+            insertKey(key, table, attempts - 2);
+            return;
+        }
         if (table == 1) {
             int index = hash1(key);
             if (table1[index] == null) {
@@ -40,7 +50,7 @@ public class CuckooHashTable {
             } else {
                 String temp = table1[index];
                 table1[index] = key;
-                insertKey(temp, 2);
+                insertKey(temp, 2,attempts + 1);
             }
         } else {
             int index = hash2(key);
@@ -50,7 +60,7 @@ public class CuckooHashTable {
             } else {
                 String temp = table2[index];
                 table2[index] = key;
-                insertKey(temp, 1);
+                insertKey(temp, 1,attempts + 1);
             }
         }
     }
