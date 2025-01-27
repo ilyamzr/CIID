@@ -1,10 +1,10 @@
 package org.example;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 class HashTable {
-    private LinkedList<Integer>[] table;
-    private int size;
+    private final LinkedList<Integer>[] table;
 
     @SuppressWarnings("unchecked")
     public HashTable(int capacity) {
@@ -12,13 +12,11 @@ class HashTable {
         for (int i = 0; i < capacity; i++) {
             table[i] = new LinkedList<>();
         }
-        size = 0;
     }
 
     public void insert(int key) {
         int index = hash(key);
         table[index].add(key);
-        size++;
     }
 
     private int hash(int key) {
@@ -45,13 +43,14 @@ class HashTable {
     }
 
     public static void main(String[] args) {
-        int N_values[] = {1000, 10000, 100000, 1000000};
+        int[] values = {1000, 10000, 100000, 1000000};
+        Random r = new Random();
 
-        for (int N : N_values) {
+        for (int N : values) {
             HashTable hashTable = new HashTable(N / 100);
 
             for (int i = 0; i < N; i++) {
-                hashTable.insert((int) (Math.random() * Integer.MAX_VALUE));
+                hashTable.insert((r.nextInt() * Integer.MAX_VALUE));
             }
 
             int[] minMaxLengths = hashTable.getMinMaxLengths();

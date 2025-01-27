@@ -3,8 +3,8 @@ package org.example;
 import java.util.Random;
 
 public class LinearProbingHashST {
-    private int[] table;
-    private int capacity;
+    private final int[] table;
+    private final int capacity;
 
     public LinearProbingHashST(int capacity) {
         this.capacity = capacity;
@@ -48,10 +48,10 @@ public class LinearProbingHashST {
     }
 
     public static void main(String[] args) {
-        int N_values[] = {1000, 10000, 100000, 1000000};
+        int[] values = {1000, 10000, 100000, 1000000};
         Random random = new Random();
 
-        for (int N : N_values) {
+        for (int N : values) {
             LinearProbingHashST hashTable = new LinearProbingHashST(N);
             for (int i = 0; i < N / 2; i++) {
                 int key = random.nextInt(N * 10);

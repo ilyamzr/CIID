@@ -17,11 +17,11 @@ public class CuckooHashTable {
     }
 
     private int hash1(String key) {
-        return Math.abs(key.hashCode()) % table1.length;
+        return key.hashCode() % table1.length;
     }
 
     private int hash2(String key) {
-        return Math.abs(key.hashCode()) % table2.length;
+        return key.hashCode() % table2.length;
     }
 
     public void insert(String key) {
