@@ -25,8 +25,8 @@
         <module>Хеш-таблицы/2</module>
         <module>Хеш-таблицы/3</module>
         <module>Хеш-таблицы/4</module>
-        <module>Применение_сортировок/1</module>
-        <module>Применение_сортировок/3</module>
+        <module>Сортировка_строк/1</module>
+        <module>Сортировка_строк/3</module>
         <!-- Добавьте другие модули, если нужно -->
     </modules>
     <properties>
